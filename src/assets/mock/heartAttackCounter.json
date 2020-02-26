@@ -1,0 +1,38 @@
+
+   [
+    {
+        "interval" :"Sun",
+        "predicted" : 102,
+        "cured" :33
+    },
+    {
+       "interval" :"Tues",
+       "predicted" : 23,
+       "cured" :10
+   },
+   {
+       "interval" :"Wed",
+       "predicted" : 56,
+       "cured" :14
+   },
+   {
+       "interval" :"Thurs",
+       "predicted" : 74,
+       "cured" :17
+   },
+   {
+       "interval" :"Fri",
+       "predicted" : 90,
+       "cured" :34
+   }   ,
+   {
+    "interval" :"sat",
+    "predicted" : 160,
+    "cured" :67
+}
+
+        
+   
+    
+]
+

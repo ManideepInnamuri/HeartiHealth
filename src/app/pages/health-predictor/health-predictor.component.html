@@ -1,0 +1,366 @@
+<style>
+  .block-label {
+    display: block;
+  }
+
+  .block-label+nb-radio-group>nb-radio {
+    display: inline;
+  }
+</style>
+
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+  <nb-card>
+    <nb-card-header>
+      <div>
+        <div>
+          <img src="../../../assets/images/health-predictor-logo.png" alt="" style="width: 50px;">
+          <h2 id="heartAttackPredictorTitle" style="color:#5781ff; display: inline-block; margin-left: 20px;">Heart Attack Predictor</h2>
+        </div>
+      </div>
+    </nb-card-header>
+    <nb-card-body>
+
+      <div class="row">
+
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label for="age" class="label" id="ageLabel" >
+              Age              
+            </label>
+            <input id="ageInput" type="number" min="1" max="100" nbInput fullWidth placeholder="Eg: 32" formControlName="age">
+            <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
+              <div *ngIf="f.age.errors.required">Age is required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label id="genderLabel" for="sex" class="label block-label">Gender</label>
+            <nb-radio-group formControlName="sex" id="genderRadio">
+              <nb-radio id="maleRadio" value="male">Male</nb-radio>
+              <nb-radio id="femaleRadio" value="female">Female</nb-radio>
+            </nb-radio-group>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label id="chestPainLabel" for="cp" class="label block-label">Do you experience Chest Pain?</label>
+            <nb-radio-group name="cp" id="chestPainRadio">
+              <nb-radio id="chestPainYesRadio" value="yes">Yes</nb-radio>
+              <nb-radio id="chestPainNoRadio" value="no">No</nb-radio>
+            </nb-radio-group>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label id="bloodPressureLabel" for="trestbps" class="label">
+              Blood Pressure Level
+              <span class="badge badge-pill badge-secondary" nbTooltip="This is a tooltip" nbTooltipStatus="primary" nbButton status="primary">i</span>
+            </label>
+            <input id="bloddPressureInput" type="text" nbInput fullWidth placeholder="Eg: 120" formControlName="trestbps">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label id="cholesterolLabel" for="chol" class="label">
+              Cholesterol Level
+              <span class="badge badge-pill badge-secondary" nbTooltip="This is a tooltip" nbTooltipStatus="primary" nbButton status="primary">i</span>
+            </label>
+            <input id="cholesterolInput" type="text" nbInput fullWidth placeholder="Eg: 323" formControlName="chol">
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label for="fbs" class="label" id="fastingBloodSugarLabel">
+              Fasting Blood Sugar Level
+              <span class="badge badge-pill badge-secondary" nbTooltip="This is a tooltip" nbTooltipStatus="primary" nbButton status="primary">i</span>
+            </label>
+            <input id="fastingBloodSugarInput" type="text" nbInput fullWidth placeholder="Eg: 123" formControlName="fbs">
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label for="" class="label block-label" id="restECGLabel">
+              Resting Electrocardiographic
+              <span class="badge badge-pill badge-secondary" nbTooltip="This is a tooltip" nbTooltipStatus="primary" nbButton status="primary">i</span>
+            </label>
+            <nb-radio-group name="restecg" id="restECGRadio">
+              <nb-radio id="restECGPositiveRadio" value="1">Positive</nb-radio>
+              <nb-radio id="restECGNegativeRadio" value="0">Negative</nb-radio>
+            </nb-radio-group>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label for="" class="label" id="heartRateLabel">
+              Maximum Heart Rate Achieved
+              <span class="badge badge-pill badge-secondary" nbTooltip="This is a tooltip" nbTooltipStatus="primary" nbButton status="primary">i</span>
+            </label>
+            <input id="heartRateInput" type="text" nbInput fullWidth placeholder="323" formControlName="thalach">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label id="anginaLabel" for="exang" class="label block-label">
+              Exercise includes Angina
+              <span class="badge badge-pill badge-secondary" nbTooltip="This is a tooltip" nbTooltipStatus="primary" nbButton status="primary">i</span>
+            </label>
+            <nb-radio-group name="exang" id="anginaRadio">
+              <nb-radio id="anginaYesRadio" value="yes">Yes</nb-radio>
+              <nb-radio id="anginaNoRadio" value="no">No</nb-radio>
+            </nb-radio-group>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label id="depressionLabel" for="oldpeak" class="label">
+              Depression induced by exercise
+              <span class="badge badge-pill badge-secondary" nbTooltip="This is a tooltip" nbTooltipStatus="primary" nbButton status="primary">i</span>
+            </label>
+            <input id="depressionInput" type="text" nbInput fullWidth placeholder="0 - 10" formControlName="oldpeak">
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label id="peakExerciseLabel" for="slope" class="label">
+              Slope of the peak exercise
+              <span class="badge badge-pill badge-secondary" nbTooltip="This is a tooltip" nbTooltipStatus="primary" nbButton status="primary">i</span>
+            </label>
+            <input id="peakExerciseInput" type="text" nbInput fullWidth placeholder="0 - 1" formControlName="slope">
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label id="fluoroscopyLabel" for="ca" class="label">
+              Vessels colored by flouoroscopy
+              <span class="badge badge-pill badge-secondary" nbTooltip="This is a tooltip" nbTooltipStatus="primary" nbButton status="primary">i</span>
+            </label>
+            <input id="fluoroscopyInput" type="text" nbInput fullWidth placeholder="0 - 10" formControlName="ca">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label id="thalassemiaLabel" for="thal" class="label">
+              Thalassemia Level
+              <span class="badge badge-pill badge-secondary" nbTooltip="This is a tooltip" nbTooltipStatus="primary" nbButton status="primary">i</span>
+            </label>
+            <input id="thalassemiaInput" type="text" nbInput fullWidth placeholder="3=normal 6=fixed defect 7=reversible defect"
+              formControlName="thal">
+          </div>
+        </div>
+      </div>
+
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton size="medium" shape="semi-round" id="heartPredictorCalculateBtn">Calculate</button>
+    </nb-card-footer>
+  </nb-card>
+</form>
+
+
+
+
+<!-- Dialogue ref -->
+<style>
+  .result-image {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 30px;
+  }
+
+  .result-message-text {
+    color: #00D68D;
+    text-align: center;
+    font-weight: bold;
+    padding: 30px 0px;
+  }
+
+  .danger-tips-title{
+    text-align: center;
+  }
+  .result-message-text .danger-message{
+    font-weight: bold;
+    color: black;
+    padding: 20px 0px;
+    
+  }
+
+  .danger-tips-msg{
+    border-left: 0.5px solid rgba(0,0,0,0.5);
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .danger-type-msg{
+    text-align: center;
+    
+  }
+
+  .predictor-result {
+    margin-bottom: 40px;
+  }
+
+  .health-predictor-result-container {
+    width: 70vh;
+  }
+
+  .nb-dialog-container{
+    overflow: scroll;
+  }
+</style>
+
+
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>Heart Attack Predictor</nb-card-header>
+    <nb-card-body>
+      <div class="health-predictor-result-container">
+        <div class="predictor-result-success" *ngIf="isHeartOK; else dangerTemplate">
+          <div class="result-title"></div>
+          <div class="result-body">
+            <div class="predictor-result">
+              <div class="result-message">
+                <img src="../../../assets/images/heart-ok.png" alt="" class="result-image">
+                <div class="result-message-text">
+                  Congratulations! You are safe.
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="card-row row">
+
+                <div class="card-col col-lg-6">
+                  <nb-card accent="info">
+                    <nb-card-header >
+                      <div style="text-align: center;">
+                        Cholesterol
+                      </div>
+                    </nb-card-header>
+                    <nb-card-body>
+                      <div style="text-align: center;">
+                        174
+                      </div>
+                    </nb-card-body>
+                  </nb-card>
+                </div>
+                <div class="col-lg-6">
+                  <nb-card accent="info">
+                    <nb-card-header>
+                      <div style="text-align: center;">
+                        Blood Sugar
+                      </div>
+                    </nb-card-header>
+                    <nb-card-body>
+                      <div style="text-align: center;">
+                        120
+                      </div>
+                    </nb-card-body>
+                  </nb-card>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ng-template #dangerTemplate>
+        <div class="predictor-result-danger">
+          <div class="result-title"></div>
+          <div class="result-body">
+            <div class="predictor-result">
+              <div class="result-message">               
+                <div class="result-message-text">
+                  <div class="danger-message">
+                    <span> We suggest you to have a consultation with a cardiologist at the earliest.</span>
+                  </div>
+                  <div class="appointment-btn">
+
+                    <!-- TODO: Add a button below to Book and Appointment with Doctor -->
+                    <button nbButton size="medium" shape="semi-round">Book Appointment Now</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="card-row row">
+
+                <div class="card-col col-lg-12">
+                  <nb-card accent="info">                    
+                    <nb-card-body>
+                      <div class="row">
+                        <div class="col col-lg-3"> 
+                          <div class="danger-type-msg">
+                            Cholesterol
+                          </div>
+                        </div>
+                        <div class="col col-lg-9">
+                          <div class="danger-tips-title">
+                            Tips
+                          </div>
+                          <div class="danger-tips-msg">
+                            High Blood Cholesterol can be caused due to factors like smoking, an unhealthy diet and lack of exercise,
+                            as well as having an underlying condition, such as high blood pressure or diabetes.
+                          </div>
+                        </div>
+                      </div>
+                    </nb-card-body>
+                  </nb-card>
+                </div>
+
+                <div class="col-lg-12">
+                  <nb-card accent="info">
+                    <nb-card-body>
+
+                      <div class="row">
+                        <div class="col col-lg-3"> 
+                          <div class="danger-tips-title">
+                            Blood Sugar
+                          </div>
+                        </div>
+                        <div class="col col-lg-9">
+                          <div class="danger-tips-title">
+                            Tips
+                          </div>
+                          <div class="danger-tips-msg">
+                            Carbohydrates: Eating food containing too much carbohydrates, a form of sugar.                            
+                            Blood sugar levels in patients with diabetes can rise within hours after eating.
+                          </div>
+                        </div>
+                      </div>
+
+                    </nb-card-body>
+                  </nb-card>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton (click)="ref.close()">Close</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

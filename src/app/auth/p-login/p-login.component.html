@@ -1,0 +1,50 @@
+<style>
+
+</style>
+
+<div>
+
+</div>
+
+<div class="row">
+    <div class="col-lg-6" style="display: flex; align-items: center; justify-content: center;">
+
+        <div>
+            <img src="../../../assets/images/Hearti_Health_logo.png" alt="" style="width: 10rem;">
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+        <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+            <h1 class="title" id="title">Login</h1>
+            <p class="sub-title">Hello! Log in with your email.</p>
+
+            <div class="form-group">
+                <label for="email" class="label" id="emailLabel">
+                    Email
+                </label>
+                <input type="text" nbInput fullWidth placeholder="Email" formControlName="email" id="inputEmail">
+
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="label" id="passwordLabel">
+                    Password
+                </label>
+                <input type="password" nbInput fullWidth placeholder="Password" formControlName="password"
+                    id="inputPassword">
+            </div>
+
+            <button nbButton size="medium" shape="semi-round" style="display: block; margin:auto;"
+                id="loginBtn">Login</button>
+        </form>
+
+        <div class="register-btn-contain" style="margin-top: 10px;">
+            Don't have an account?
+            <a href="/register" class="text-link" id="resgisterLink">Register</a>
+        </div>
+    </div>
+
+
+</div>
